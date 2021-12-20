@@ -26,7 +26,7 @@ Installing docker:
 
   - [Docker](https://docs.docker.com/get-docker/)
 
-To run, build the docker image in terminal:
+To run, execute the following lines of code in terminal:
 ```
 cd mlex_colorwheel
 docker-compose up --build
