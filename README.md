@@ -4,6 +4,8 @@
 
 ### Option 1: Run in Jupyter notebook
 
+In a new Python enviroment, install the packages listed in docker/requirements.txt
+
 ```
 cd mlex_colorwheel/src
 jupyter notebook
