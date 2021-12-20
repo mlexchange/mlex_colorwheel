@@ -1,11 +1,11 @@
-version: "0.1"
+version: "3.9"
 
 services:
   colorwheel:
     restart: "unless-stopped"
     container_name: "colorwheel"
-    user: "${UID}:${GID}"
     build:
+      context: ./
       dockerfile: "docker/Dockerfile"
     command: "python src/frontend.py"
     ports:
