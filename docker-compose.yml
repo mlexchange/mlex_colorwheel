@@ -1,0 +1,12 @@
+version: "0.1"
+
+services:
+  colorwheel:
+    restart: "unless-stopped"
+    container_name: "colorwheel"
+    user: "${UID}:${GID}"
+    build:
+      dockerfile: "docker/Dockerfile"
+    command: "python src/frontend.py"
+    ports:
+      - "8050:8050"
