@@ -22,11 +22,11 @@ In Jupyter, execute the file frontend.ipynb, and the app will be available at [l
 
 ### Option 2: Run in Docker
 
-Installation:
+Installing docker:
+
   - [Docker](https://docs.docker.com/get-docker/)
 
-Running:
-First, build the docker image in terminal:
+To run, build the docker image in terminal:
 ```
 cd mlex_colorwheel
 docker-compose up --build
