@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  colorwheel:
+    restart: "unless-stopped"
+    container_name: "colorwheel"
+    build:
+      context: ./
+      dockerfile: "docker/Dockerfile"
+    command: "python src/frontend.py"
+    ports:
+      - "8050:8050"
