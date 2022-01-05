@@ -22,9 +22,11 @@ In Jupyter, execute the file frontend.ipynb, and the app will be available at [l
 
 ### Option 2: Run in Docker
 
-Installing docker:
+Installing docker desktop:
 
   - [Docker](https://docs.docker.com/get-docker/)
+ 
+For Linx, install Docker and [Docker Compose (version 3 above)](https://docs.docker.com/compose/install/) 
 
 To run, execute the following lines of code in terminal:
 ```
