@@ -36,7 +36,7 @@ docker-compose up --build
 Once built, you can access the app at [localhost:8050](http://localhost:8050)
 
 ### Preprocessing
-Images should only contain actual pixels. Any irrelevant information, such as labels, cptions, scalebar should be cropped.
+Images should only contain actual pixels. Any irrelevant information, such as labels, cptions, scalebar should be excluded.
 
 ## Copyright
 MLExchange Copyright (c) 2021, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
