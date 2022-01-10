@@ -26,7 +26,7 @@ Installing docker desktop:
 
   - [Docker](https://docs.docker.com/get-docker/)
  
-For Linx, install Docker and [Docker Compose (version 3 above)](https://docs.docker.com/compose/install/) 
+For Linux, install Docker and [Docker Compose (version 3 above)](https://docs.docker.com/compose/install/) 
 
 To run, execute the following lines of code in terminal:
 ```
@@ -36,7 +36,7 @@ docker-compose up --build
 Once built, you can access the app at [localhost:8050](http://localhost:8050)
 
 ### Preprocessing
-Images should only contain actual pixels. Any irrelevant information, such as labels, cptions, scalebar should be excluded.
+Images should only contain actual pixels. Any irrelevant information, such as legends, labels, and scalebar should be excluded.
 
 ## Copyright
 MLExchange Copyright (c) 2021, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
