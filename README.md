@@ -43,7 +43,7 @@ Images should only contain actual pixels. Any irrelevant information, such as le
 ### Uploading multiple files
 Dash-uploader 0.6.0 cannot handle uploading multiple files, see [issue 5](https://github.com/np-8/dash-uploader/issues/5). 
 It seems this issue will be resolved in release 0.7.0. 
-The temperary solution to address this issue is to upload (multiple data) through a zip file.
+The temporary solution to address this issue is to upload (multiple data) through a zip file.
 
 ## Copyright
 MLExchange Copyright (c) 2021, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
