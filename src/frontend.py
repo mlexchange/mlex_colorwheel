@@ -15,34 +15,60 @@ from PIL import ImageEnhance
 from PIL import ImageFilter
 from skimage.color import hsv2rgb    
 from skimage import io
+from cupy_common import check_cupy_available
 
+gpu_accelerated = check_cupy_available()
+
+if gpu_accelerated:
+    print("Running on GPU")
+    cp = __import__("cupy")
+else:
+    print("Running on CPU")
+    cp = __import__("numpy")
+
+#creates the colohweel
 def bldclrwhl(nx, ny, sym):
-    da = np.ones((nx,ny,2))
-    x = np.linspace(-nx/2,nx/2,nx)
-    y = np.linspace(-ny/2,ny/2,ny)
-    xx, yy = np.meshgrid(y,x)
-    zz = (((np.arctan2(xx, yy) / math.pi) + 1.0) / 2.0)*sym
-    d2 = np.dstack((zz, da))
-    imnp = np.array(hsv2rgb(d2))
+    cda = cp.ones((nx, ny,2))
+    cx = cp.linspace(-nx,nx,nx)
+    cy = cp.linspace(-ny,ny,ny)
+    cxx, cyy = cp.meshgrid(cy,cx)
+    czz =(((cp.arctan2(cxx, cyy) / math.pi) + 1.0) / 2.0)*sym
+    cd2 = cp.dstack((czz, cda))
+    carr = cd2
+    chi = cp.floor(carr[..., 0] * 6)
+    f = carr[..., 0] * 6 - chi
+    p = carr[..., 2] * (1 - carr[..., 1])
+    q = carr[..., 2] * (1 - f * carr[..., 1])
+    t = carr[..., 2] * (1 - (1 - f) * carr[..., 1])
+    v = carr[..., 2]
+    chi = cp.stack([chi, chi, chi], axis=-1).astype(cp.uint8) % 6
+    out = cp.choose(
+        chi, cp.stack([cp.stack((v, t, p), axis=-1),
+                      cp.stack((q, v, p), axis=-1),
+                      cp.stack((p, v, t), axis=-1),
+                      cp.stack((p, q, v), axis=-1),
+                      cp.stack((t, p, v), axis=-1),
+                      cp.stack((v, p, q), axis=-1)]))
+    imnp = cp.asnumpy(out)
     return imnp
 
 def nofft(whl, img, nx, ny):
-    imnp = np.array(img)
-    fimg = fft2(imnp)
-    whl = fftshift(whl)
-    proimg = np.zeros((nx,ny,3))
-    comb = np.zeros((nx,ny,3), dtype=complex)
-    magnitude = np.repeat(np.abs(fimg)[:,:,np.newaxis], 3, axis=2)
-    phase = np.repeat(np.angle(fimg)[:,:,np.newaxis], 3, axis=2)
+    imnp = cp.array(img)
+    fimg = cp.fft.fft2(imnp)
+    whl  = cp.fft.fftshift(whl)
+    proimg = cp.zeros((nx,ny,3))
+    comb = cp.zeros((nx,ny,3), dtype=complex)
+    magnitude = cp.repeat(np.abs(fimg)[:,:,np.newaxis], 3, axis=2)
+    phase = cp.repeat(np.angle(fimg)[:,:,np.newaxis], 3, axis=2)
     proimg = whl*magnitude
-    comb = np.multiply(proimg, np.exp(1j*phase))
+    comb = cp.multiply(proimg, cp.exp(1j*phase))
     for n in range(3):
-        proimg[:, :, n] = np.real(ifft2(comb[:,:,n]))
-        proimg[:, :, n] = proimg[:, :, n] - np.min(proimg[:, :, n])
-        proimg[:, :, n] = proimg[:, :, n] / np.max(proimg[:, :, n])
-    
+        proimg[:, :, n] = cp.real(cp.fft.ifft2(comb[:,:,n]))
+        proimg[:, :, n] = proimg[:, :, n] - cp.min(proimg[:, :, n])
+        proimg[:, :, n] = proimg[:, :, n] / cp.max(proimg[:, :, n])
+            
+    proimg = cp.asnumpy(proimg)
     return proimg
-
 
 # In[10]:
 
