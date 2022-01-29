@@ -70,7 +70,8 @@ def nofft(whl, img, nx, ny):
         proimg[:, :, n] = proimg[:, :, n] - cp.min(proimg[:, :, n])
         proimg[:, :, n] = proimg[:, :, n] / cp.max(proimg[:, :, n])
             
-    proimg = cp.asnumpy(proimg)
+    if gpu_accelerated:
+        proimg = cp.asnumpy(proimg)
     return proimg
 
 # In[10]:
