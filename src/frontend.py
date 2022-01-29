@@ -49,7 +49,10 @@ def bldclrwhl(nx, ny, sym):
                       cp.stack((p, q, v), axis=-1),
                       cp.stack((t, p, v), axis=-1),
                       cp.stack((v, p, q), axis=-1)]))
-    imnp = cp.asnumpy(out)
+    if gpu_accelerated:
+        imnp = cp.asnumpy(out)
+    else:
+        imnp = out
     return imnp
 
 def nofft(whl, img, nx, ny):
