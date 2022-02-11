@@ -1,2 +1,4 @@
 .DS_Store
 src/.ipynb_checkpoints/*
+.tmp
+*pycache*
