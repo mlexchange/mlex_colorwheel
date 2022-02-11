@@ -7,10 +7,6 @@ services:
     build:
       context: ./
       dockerfile: "docker/Dockerfile"
-    command: >
-      sh -c "jupyter nbconvert --to python src/frontend.ipynb &&
-             python src/frontend.py"
-    volumes:
-      - ./src:/app/work/src
+    command: "python src/frontend.py"
     ports:
       - "8050:8050"
