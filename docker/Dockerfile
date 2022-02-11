@@ -16,4 +16,6 @@ RUN pip install -r requirements.txt
 WORKDIR /app/work/
 COPY src src
 
+RUN jupyter nbconvert --to python src/frontend.ipynb
+
 CMD ["bash"]
