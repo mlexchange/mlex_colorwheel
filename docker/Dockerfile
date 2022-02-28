@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.7
 
 COPY docker/requirements.txt requirements.txt
 
@@ -16,6 +16,6 @@ RUN pip install -r requirements.txt
 WORKDIR /app/work/
 COPY src src
 
-RUN jupyter nbconvert --to python src/frontend.ipynb
+#RUN jupyter nbconvert --to python src/frontend.ipynb
 
 CMD ["bash"]

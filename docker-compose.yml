@@ -8,5 +8,7 @@ services:
       context: ./
       dockerfile: "docker/Dockerfile"
     command: "python src/frontend.py"
+    volumes:
+      - ./src:/app/work/src
     ports:
       - "8061:8061"
