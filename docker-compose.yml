@@ -9,6 +9,6 @@ services:
       dockerfile: "docker/Dockerfile"
     command: "python src/frontend.py"
     volumes:
-      - "Volumes/RAMDisk:/Volumes/RAMDisk"
+      - "/Volumes/RAMDisk:/Volumes/RAMDisk"
     ports:
       - "8091:8091"
