@@ -9,4 +9,4 @@ services:
       dockerfile: "docker/Dockerfile"
     command: "python src/frontend.py"
     ports:
-      - "8061:8061"
+      - "8091:8091"
