@@ -15,9 +15,6 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app/work/
 COPY src src
-RUN mkdir /Volumes
-RUN mkdir /Volumes/RAMDisk
-RUN sudo mount -t tmpfs -o rw,size=2G tmpfs /Volumes/RAMDisk
 
 RUN jupyter nbconvert --to python src/frontend.ipynb
 
