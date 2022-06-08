@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 
 services:
   colorwheel:
@@ -8,5 +8,13 @@ services:
       context: ./
       dockerfile: "docker/Dockerfile"
     command: "python src/frontend.py"
+    volumes:
+      - ram_vol:/Volumes/RAMDisk
     ports:
-      - "8061:8061"
+      - "8091:8091"
+      
+volumes:
+    ram_vol:
+        driver_opts:
+            type: tmpfs
+            device: tmpfs
